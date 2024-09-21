@@ -1,11 +1,11 @@
-# Employee-management-system-api
+# Employee-management-system-api with NodeJs and MongoDB
 
 ## Installation
 
 Update .env file set database url and email access
 
 ```
-CONNECT_STRING=
+CONNECT_STRING= "Set your MongoDb Connecting String"
 SMTP_EMAIL_ADDRESS=
 SMTP_EMAIL_PASS=
 ```
