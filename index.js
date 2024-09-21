@@ -1,12 +1,13 @@
 import cors from "cors";
-import express from "express";
-// import { router } from "./routes/route.js";
 import * as dotenv from "dotenv";
+import express from "express";
 import mongoose from "mongoose";
+import { employeeRouter } from "./routes/employeeRoute.js";
+import { router } from "./routes/route.js";
 dotenv.config();
 
 const app = express();
-const port = process.env.PORT || 8088;
+const port = process.env.PORT || 4000;
 const connectingString = process.env.CONNECT_STRING;
 
 let corsOptions = {
@@ -28,20 +29,8 @@ app.get("/", (req, res) => {
   res.send("Hello, Employee Management System API!");
 });
 
-// mongoose
-//   .connect(process.env.CONNECT_STRING)
-//   .then(() => {
-//     app.listen(serverPort, () => {
-//       console.log(`Server Running on http://localhost:${serverPort}`);
-//     });
-//   })
-//   .catch((err) => {
-//     console.log(err);
-//     // console.error("Connection error", err);
-//     // process.exit();
-//   });
-
-// app.use("/", router);
+app.use("/v0/", router);
+app.use("/v0/", employeeRouter);
 
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);

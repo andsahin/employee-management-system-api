@@ -1,0 +1,766 @@
+{
+	"info": {
+		"_postman_id": "25154609-85c6-4c3a-b547-af165efb1213",
+		"name": "Employee management",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34820357"
+	},
+	"item": [
+		{
+			"name": "admin-hr",
+			"item": [
+				{
+					"name": "role manage",
+					"item": [
+						{
+							"name": "add-role",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpbmZvIjp7Il9pZCI6IjY2ZWU1N2YyZmQ5YzA2YWJlOGExOTEwOCIsIm5hbWUiOiJzYWhpbiIsImVtYWlsIjoic2FoaW4yMDAyQGdtYWlsLmNvbSIsInJvbGUiOiJlbXBsb3llZSIsImlwX2FkZHJlc3MiOiI6OjEiLCJzdGF0dXMiOiJhY3RpdmUiLCJjcmVhdGVkQXQiOiIyMDI0LTA5LTIxVDA1OjIxOjU0LjkyNFoiLCJ1cGRhdGVkQXQiOiIyMDI0LTA5LTIxVDA1OjIxOjU0LjkyNFoiLCJfX3YiOjB9LCJpYXQiOjE3MjY4OTg1OTQsImV4cCI6MTcyNjk4NDk5NH0.bCb6UddyU7TkR_TUJ9ngh39WsoYYOP6IUTcceCzzkHE",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v0/add-role",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v0",
+										"add-role"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get-all-role",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v0/get-all-role",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v0",
+										"get-all-role"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update-role",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{ \r\n    \"rolesTitle\":\"Employee kk\", \r\n    \"status\":\"active\", \r\n    \"permissions\": {\r\n        \"add-attendance\": true,\r\n        \"list-attendance\": true,\r\n        \"add-task\": true,\r\n        \"list-task\": true,\r\n        \"add-leave-request\": true,\r\n        \"list-leave-request\": true\r\n    } \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v0/update-role/66ee63dcfb25c6729362ee38",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v0",
+										"update-role",
+										"66ee63dcfb25c6729362ee38"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete-role",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v0/delete-role/66ee6ca9c3450317e488ed4e",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v0",
+										"delete-role",
+										"66ee6ca9c3450317e488ed4e"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "attendance",
+					"item": [
+						{
+							"name": "all-employee-attendance",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpbmZvIjp7Il9pZCI6IjY2ZWU1ZWIyZDA0NjhlNmIyYzk4OTI4YyIsIm5hbWUiOiJBZG1pbiIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluLWhyIiwiaXBfYWRkcmVzcyI6Ijo6MSIsInN0YXR1cyI6ImFjdGl2ZSIsImNyZWF0ZWRBdCI6IjIwMjQtMDktMjFUMDU6NTA6NDIuNjkxWiIsInVwZGF0ZWRBdCI6IjIwMjQtMDktMjFUMDU6NTA6NDIuNjkxWiIsIl9fdiI6MH0sImlhdCI6MTcyNjkwNDg3NSwiZXhwIjoxNzI2OTkxMjc1fQ.g_Fu8mPtdfAMosX5X6DfHu_ZqTVn4A32q4Cq31IPb78",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v0/all-employee-attendance",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v0",
+										"all-employee-attendance"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "leave-request",
+					"item": [
+						{
+							"name": "leave-request-by-id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v0/get-all-leave-request",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v0",
+										"get-all-leave-request"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "leave-request-by-id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v0/leave-request-by-id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v0",
+										"leave-request-by-id"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "leave-request-update-status",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v0/leave-request-update-status/66ee732156287fb68538aebf",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v0",
+										"leave-request-update-status",
+										"66ee732156287fb68538aebf"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "employee",
+					"item": [
+						{
+							"name": "add-employee",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Employee\", \r\n    \"email\": \"amployee@gmail.com\",\r\n    \"password\": \"12345678\",\r\n    \"role\": \"employee\", // selected role title\r\n    \"role_id\": \"66ee63dcfb25c6729362ee38\" // selected role id\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v0/add-employee",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v0",
+										"add-employee"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "New Request",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpbmZvIjp7Il9pZCI6IjY2ZWU1ZWIyZDA0NjhlNmIyYzk4OTI4YyIsIm5hbWUiOiJBZG1pbiIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluLWhyIiwiaXBfYWRkcmVzcyI6Ijo6MSIsInN0YXR1cyI6ImFjdGl2ZSIsImNyZWF0ZWRBdCI6IjIwMjQtMDktMjFUMDU6NTA6NDIuNjkxWiIsInVwZGF0ZWRBdCI6IjIwMjQtMDktMjFUMDU6NTA6NDIuNjkxWiIsIl9fdiI6MH0sImlhdCI6MTcyNjg5OTE1MiwiZXhwIjoxNzI2OTg1NTUyfQ.SvziwTVOONZ2UDfk7bLZN8v6BEZNKx6QMS4QVVaUBNE",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "employee",
+			"item": [
+				{
+					"name": "attendance",
+					"item": [
+						{
+							"name": "attendance",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpbmZvIjp7Il9pZCI6IjY2ZWU2NGJkNmRlMzQ2Y2RiNjA4YzEzYSIsIm5hbWUiOiJFbXBsb3llZSIsImVtYWlsIjoiZW1wbG95ZWVAZ21haWwuY29tIiwicm9sZSI6ImVtcGxveWVlIiwicm9sZV9wZXJtaXNzaW9uIjp7Il9pZCI6IjY2ZWU2M2RjZmIyNWM2NzI5MzYyZWUzOCIsInBlcm1pc3Npb25zIjp7ImFkZC1hdHRlbmRhbmNlIjp0cnVlLCJsaXN0LWF0dGVuZGFuY2UiOnRydWUsImFkZC10YXNrIjp0cnVlLCJsaXN0LXRhc2siOnRydWUsImFkZC1sZWF2ZS1yZXF1ZXN0Ijp0cnVlLCJsaXN0LWxlYXZlLXJlcXVlc3QiOnRydWV9LCJzdGF0dXMiOiJhY3RpdmUiLCJjcmVhdGVkQXQiOiIyMDI0LTA5LTIxVDA2OjEyOjQ0Ljc0NloiLCJ1cGRhdGVkQXQiOiIyMDI0LTA5LTIxVDA2OjEyOjQ0Ljc0NloiLCJfX3YiOjB9LCJpcF9hZGRyZXNzIjoiOjoxIiwic3RhdHVzIjoiYWN0aXZlIiwiY3JlYXRlZEF0IjoiMjAyNC0wOS0yMVQwNjoxNjoyOS4xNjNaIiwidXBkYXRlZEF0IjoiMjAyNC0wOS0yMVQwNjoxNjoyOS4xNjNaIiwiX192IjowfSwiaWF0IjoxNzI2ODk5NDA3LCJleHAiOjE3MjY5ODU4MDd9.ZLrpDwGeIVICDH9uGRzsgObZteFG16F6bU5ChqwNsYQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{  \r\n    \"type\": \"checkOut\" //type=checkIn||checkOut\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v0/attendance",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v0",
+										"attendance"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "attendance",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpbmZvIjp7Il9pZCI6IjY2ZWU2NGJkNmRlMzQ2Y2RiNjA4YzEzYSIsIm5hbWUiOiJFbXBsb3llZSIsImVtYWlsIjoiZW1wbG95ZWVAZ21haWwuY29tIiwicm9sZSI6ImVtcGxveWVlIiwicm9sZV9wZXJtaXNzaW9uIjp7Il9pZCI6IjY2ZWU2M2RjZmIyNWM2NzI5MzYyZWUzOCIsInBlcm1pc3Npb25zIjp7ImFkZC1hdHRlbmRhbmNlIjp0cnVlLCJsaXN0LWF0dGVuZGFuY2UiOnRydWUsImFkZC10YXNrIjp0cnVlLCJsaXN0LXRhc2siOnRydWUsImFkZC1sZWF2ZS1yZXF1ZXN0Ijp0cnVlLCJsaXN0LWxlYXZlLXJlcXVlc3QiOnRydWV9LCJzdGF0dXMiOiJhY3RpdmUiLCJjcmVhdGVkQXQiOiIyMDI0LTA5LTIxVDA2OjEyOjQ0Ljc0NloiLCJ1cGRhdGVkQXQiOiIyMDI0LTA5LTIxVDA2OjEyOjQ0Ljc0NloiLCJfX3YiOjB9LCJpcF9hZGRyZXNzIjoiOjoxIiwic3RhdHVzIjoiYWN0aXZlIiwiY3JlYXRlZEF0IjoiMjAyNC0wOS0yMVQwNjoxNjoyOS4xNjNaIiwidXBkYXRlZEF0IjoiMjAyNC0wOS0yMVQwNjoxNjoyOS4xNjNaIiwiX192IjowfSwiaWF0IjoxNzI2ODk5NDA3LCJleHAiOjE3MjY5ODU4MDd9.ZLrpDwGeIVICDH9uGRzsgObZteFG16F6bU5ChqwNsYQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v0/attendance",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v0",
+										"attendance"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "leave-request",
+					"item": [
+						{
+							"name": "leave-request",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{ \"start_date\":\"2024-09-23\", \"end_date\":\"2024-09-28\", \"request_date\":\"2024-09-21\", \"reason\":\"Go home\", \"comments\":\"\" }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v0/leave-request",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v0",
+										"leave-request"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "leave-request",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v0/leave-request",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v0",
+										"leave-request"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Task",
+					"item": [
+						{
+							"name": "task",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{ \"title\":\"Test\", \"description\":\"Test description\", \"due_date\":\"2024-09-28\", \"priority\":\"Medium\" }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v0/task",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v0",
+										"task"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "task",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v0/task",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v0",
+										"task"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "assigned-task",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v0/assigned-task",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v0",
+										"assigned-task"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "task/id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v0/task/66ee8d06d81b9983126a9362",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v0",
+										"task",
+										"66ee8d06d81b9983126a9362"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update-task",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{ \"title\":\"Test update\", \"description\":\"Test description\", \"due_date\":\"2024-09-28\", \"priority\":\"Medium\" }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v0/update-task/66ee8d06d81b9983126a9362",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v0",
+										"update-task",
+										"66ee8d06d81b9983126a9362"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update-task-status",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v0/update-task-status/66ee8d06d81b9983126a9362",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v0",
+										"update-task-status",
+										"66ee8d06d81b9983126a9362"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpbmZvIjp7Il9pZCI6IjY2ZWU2NGJkNmRlMzQ2Y2RiNjA4YzEzYSIsIm5hbWUiOiJFbXBsb3llZSIsImVtYWlsIjoiZW1wbG95ZWVAZ21haWwuY29tIiwicm9sZSI6ImVtcGxveWVlIiwicm9sZV9wZXJtaXNzaW9uIjp7Il9pZCI6IjY2ZWU2M2RjZmIyNWM2NzI5MzYyZWUzOCIsInBlcm1pc3Npb25zIjp7ImFkZC1hdHRlbmRhbmNlIjp0cnVlLCJsaXN0LWF0dGVuZGFuY2UiOnRydWUsImFkZC10YXNrIjp0cnVlLCJsaXN0LXRhc2siOnRydWUsImFkZC1sZWF2ZS1yZXF1ZXN0Ijp0cnVlLCJsaXN0LWxlYXZlLXJlcXVlc3QiOnRydWV9LCJzdGF0dXMiOiJhY3RpdmUiLCJjcmVhdGVkQXQiOiIyMDI0LTA5LTIxVDA2OjEyOjQ0Ljc0NloiLCJ1cGRhdGVkQXQiOiIyMDI0LTA5LTIxVDA2OjEyOjQ0Ljc0NloiLCJfX3YiOjB9LCJpcF9hZGRyZXNzIjoiOjoxIiwic3RhdHVzIjoiYWN0aXZlIiwiY3JlYXRlZEF0IjoiMjAyNC0wOS0yMVQwNjoxNjoyOS4xNjNaIiwidXBkYXRlZEF0IjoiMjAyNC0wOS0yMVQwNjoxNjoyOS4xNjNaIiwiX192IjowfSwiaWF0IjoxNzI2ODk5NDA3LCJleHAiOjE3MjY5ODU4MDd9.ZLrpDwGeIVICDH9uGRzsgObZteFG16F6bU5ChqwNsYQ",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "registration",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Admin HR\", //admin-hr registration\r\n    \"email\": \"mdsahin101@gmail.com\",\r\n    \"password\": \"12345678\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/v0/registration",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"v0",
+						"registration"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"sahin@gmail.com\",\r\n    \"password\": \"12345678\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/v0/login",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"v0",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "change-password",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpbmZvIjp7Il9pZCI6IjY2ZWU1ZWIyZDA0NjhlNmIyYzk4OTI4YyIsIm5hbWUiOiJBZG1pbiIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluLWhyIiwiaXBfYWRkcmVzcyI6Ijo6MSIsInN0YXR1cyI6ImFjdGl2ZSIsImNyZWF0ZWRBdCI6IjIwMjQtMDktMjFUMDU6NTA6NDIuNjkxWiIsInVwZGF0ZWRBdCI6IjIwMjQtMDktMjFUMDU6NTA6NDIuNjkxWiIsIl9fdiI6MH0sImlhdCI6MTcyNjkxNTQ5OCwiZXhwIjoxNzI3MDAxODk4fQ.9EPV1SJ5ktOL7RHeU-MaxsraL8MMD5fZgSLiR3m8Ll8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"oldPassword\":\"12345678\", \"newPassword\":\"123456\" }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/v0/change-password",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"v0",
+						"change-password"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "forgot-password",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"mdsahin101@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/v0/forgot-password",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"v0",
+						"forgot-password"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "password-reset-verification",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/v0/password-reset-verification/Zm9yZ290cGFzcyxFbXBsb3llZS1NYW5hZ2VtZW50LVN5c3RlbS1WMS0yMDI0LUtyYWZ0d2Vyay1UZWNobm9sb2dpZXMsbWRzYWhpbjEwMUBnbWFpbC5jb20sNjUyOTAy",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"v0",
+						"password-reset-verification",
+						"Zm9yZ290cGFzcyxFbXBsb3llZS1NYW5hZ2VtZW50LVN5c3RlbS1WMS0yMDI0LUtyYWZ0d2Vyay1UZWNobm9sb2dpZXMsbWRzYWhpbjEwMUBnbWFpbC5jb20sNjUyOTAy"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "password-reset-from-forgot-pass",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"newPassword\": \"12345678\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/v0/password-reset-from-forgot-pass/Zm9yZ290cGFzcyxFbXBsb3llZS1NYW5hZ2VtZW50LVN5c3RlbS1WMS0yMDI0LUtyYWZ0d2Vyay1UZWNobm9sb2dpZXMsbWRzYWhpbjEwMUBnbWFpbC5jb20sNjUyOTAy",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"v0",
+						"password-reset-from-forgot-pass",
+						"Zm9yZ290cGFzcyxFbXBsb3llZS1NYW5hZ2VtZW50LVN5c3RlbS1WMS0yMDI0LUtyYWZ0d2Vyay1UZWNobm9sb2dpZXMsbWRzYWhpbjEwMUBnbWFpbC5jb20sNjUyOTAy"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "inherit"
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:4000",
+			"type": "string"
+		}
+	]
+}

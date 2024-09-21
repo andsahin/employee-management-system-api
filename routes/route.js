@@ -1,10 +1,9 @@
 import express from "express";
 import * as auth from "../controller/auth.js";
 import * as roleAndPermission from "../controller/roleAndPermission.js";
-import * as settings from "../controller/settings.js";
-import * as users from "../controller/users.js";
-import * as verify from "../middleware/authJwt.js";
-import { authGuard } from "../middleware/authJwt.js";
+// import * as settings from "../controller/settings.js";
+import * as employee from "../controller/admin-hr/employee.js";
+import * as authGuardMiddleware from "../middleware/authGuard.js";
 import { validation } from "../middleware/validation.js";
 
 const router = express.Router();
@@ -22,16 +21,51 @@ router.post(
   validation(auth.regValidationRule),
   auth.registration
 );
-router.post("/login", validation(auth.loginValidateRule), auth.loginUser);
+
+router.post("/login", validation(auth.loginValidateRule), auth.login);
+
+//add-employee only for admin-hr
+router.post(
+  "/add-employee",
+  validation(employee.addEmployeeValidationRule),
+  authGuardMiddleware.authGuard(""),
+  employee.addEmployee
+);
+router.post(
+  "/get-all-employee",
+  authGuardMiddleware.authGuard(""),
+  employee.getAllEmployee
+);
 
 /**
- * Others api
+ * Attendance API
  */
-
-/** settings routes */
-router.put("/settings", verify.loginCheck, settings.settings);
-router.post("/addPlan", verify.loginCheck, settings.addSubscriptionPlane);
-router.put("/buyPlan", verify.loginCheck, auth.buySubscription);
+router.get(
+  "/all-employee-attendance",
+  authGuardMiddleware.authGuard(""),
+  employee.employeeAttendance
+);
+/**
+ * Leave req API
+ */
+router.get(
+  "/get-all-leave-request",
+  authGuardMiddleware.authGuard(""),
+  employee.getAllLeaveRequest
+);
+router.get(
+  "/leave-request-by-id/:id",
+  authGuardMiddleware.authGuard(""),
+  employee.leaveRequestFindById
+);
+router.put(
+  "/leave-request-update-status/:id",
+  [
+    validation(employee.leaveRequestStatusValidation),
+    authGuardMiddleware.authGuard(""),
+  ],
+  employee.leaveRequestUpdateStatus
+);
 
 /**
  * Role Management API
@@ -39,35 +73,63 @@ router.put("/buyPlan", verify.loginCheck, auth.buySubscription);
 
 router.post(
   "/add-role",
-  [authGuard("common"), validation(roleAndPermission.roleAddValidRules)],
+  [
+    authGuardMiddleware.authGuard(""),
+    validation(roleAndPermission.roleAddValidRules),
+  ],
   roleAndPermission.addUserRole
 );
 router.put(
   "/update-role/:id",
   [
-    authGuard("common"),
+    authGuardMiddleware.authGuard(""),
     validation(roleAndPermission.updatePermissionValidateRules),
   ],
   roleAndPermission.updateRolePermission
 );
-
-router.get("/get-user-role", authGuard("common"), roleAndPermission.getRoles);
-router.get("/get-all-role", authGuard("common"), roleAndPermission.getRoleList);
 router.delete(
   "/delete-role/:id",
-  authGuard("common"),
+  [authGuardMiddleware.authGuard("")],
   roleAndPermission.deleteRole
 );
+
+// router.get("/get-user-role", authGuard("common"), roleAndPermission.getRoles);
+router.get(
+  "/get-all-role",
+  authGuardMiddleware.authGuard(""),
+  roleAndPermission.getRoleList
+);
+// router.delete(
+//   "/delete-role/:id",
+//   authGuard("common"),
+//   roleAndPermission.deleteRole
+// );
 
 /**
  * Profile API
  */
 router.put(
   "/update-my-profile",
-  [authGuard("common"), validation(auth.updateProfileValidateRules)],
+  [
+    authGuardMiddleware.authGuard("common"),
+    validation(auth.updateProfileValidateRules),
+  ],
   auth.updateMyProfile
 );
-router.get("/my-profile", authGuard("common"), auth.myProfile);
+router.get(
+  "/my-profile",
+  authGuardMiddleware.authGuard("common"),
+  auth.myProfile
+);
+
+router.put(
+  "/change-password",
+  [
+    authGuardMiddleware.authGuard("common"),
+    validation(auth.changePassValidity),
+  ],
+  auth.changePassword
+);
 
 /**
  * Forgot password API
@@ -83,46 +145,41 @@ router.put(
   auth.verifyCodeForgotPass
 );
 
-router.get("/password-reset-verification/:id", auth.passwordResetVerify);
+router.put("/password-reset-verification/:id", auth.passwordResetVerify);
 router.put(
   "/password-reset-from-forgot-pass/:id",
   validation(auth.passwordResetFromForgotValidity),
   auth.passwordResetFromForgotPassReq
 );
-router.put(
-  "/change-password",
-  [authGuard("common"), validation(auth.changePassValidity)],
-  auth.changePassword
-);
 
-/**
- * User API
- */
-router.post(
-  "/add-admin-user",
-  [authGuard("backofficeUserAdd"), validation(users.signUpValidateRules)],
-  users.addAdminUser
-);
+// /**
+//  * User API
+//  */
+// router.post(
+//   "/add-admin-user",
+//   [authGuard("backofficeUserAdd"), validation(users.signUpValidateRules)],
+//   users.addAdminUser
+// );
 
-router.put(
-  "/update-admin-user/:id",
-  [authGuard("backofficeUserEdit"), validation(users.updateValidateRules)],
-  users.updateAdminUser
-);
-router.get(
-  "/get-all-admin-user",
-  authGuard("backofficeUserList"),
-  users.getAllAdminUser
-);
-router.get(
-  "/get-admin-user-by-id/:id",
-  authGuard("backofficeUserEdit"),
-  users.getAdminUserById
-);
-router.delete(
-  "/delete-admin-user/:id",
-  authGuard("backofficeUserDelete"),
-  users.deleteAdminUser
-);
+// router.put(
+//   "/update-admin-user/:id",
+//   [authGuard("backofficeUserEdit"), validation(users.updateValidateRules)],
+//   users.updateAdminUser
+// );
+// router.get(
+//   "/get-all-admin-user",
+//   authGuard("backofficeUserList"),
+//   users.getAllAdminUser
+// );
+// router.get(
+//   "/get-admin-user-by-id/:id",
+//   authGuard("backofficeUserEdit"),
+//   users.getAdminUserById
+// );
+// router.delete(
+//   "/delete-admin-user/:id",
+//   authGuard("backofficeUserDelete"),
+//   users.deleteAdminUser
+// );
 
 export { router };
